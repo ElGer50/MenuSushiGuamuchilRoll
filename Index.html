@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CSS/CSSV1.css">
+
+    <title>Menú de Comida</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-image: url('Imagenes/GBFB2.jpg'); /* Ruta relativa al archivo dentro de la misma carpeta */
+            background-size: 100% 100%; /* Hace que la imagen de fondo tome toda la página */
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Cambia la dirección de los elementos a columna */
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+        }
+
+        .image-carousel-container {
+            display: flex;
+            align-items: center; /* Centra los elementos verticalmente */
+            margin-top: 20px; /* Espacio entre la imagen principal y las imágenes de los platillos */
+        }
+
+        .image-carousel {
+            width: 250px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 50%; /* Crop circular */
+            border: 7px solid white; /* Borde circular en blanco */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centra el contenido horizontal y verticalmente */
+        }
+
+        .carousel-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            transition: transform 0.5s;
+        }
+
+        .dish-info {
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif; /* Tipo de letra Arial */
+        }
+
+        /* Estilo para el nombre del platillo */
+        .dish-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Estilo para la descripción del platillo */
+        .dish-description {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Imagenes/MenuDSV5.jpg" alt="Menú de Comida">
+    </div>
+
+    <div class="container">
+        <div class="image-carousel-container">
+            <div class="image-carousel">
+                <img src="Imagenes/Platillo1.png" alt="Platillo actual" class="carousel-image" id="menuImage">
+            </div>
+            <div class="dish-info">
+                <h2 class="dish-name">Nombre del Platillo</h2>
+                <p class="dish-description">Descripción del platillo actual</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dishData = [
+            { name: "-Mar y Tierra", description: "" },
+            { name: "-California Roll", description: "" },
+            { name: "-Grill Roll", description: "" }
+        ];
+
+        let currentDishIndex = 0;
+        const menuImage = document.getElementById("menuImage");
+        const dishName = document.querySelector(".dish-name");
+        const dishDescription = document.querySelector(".dish-description");
+
+        function changeDish() {
+            currentDishIndex = (currentDishIndex + 1) % dishData.length;
+            menuImage.style.transform = "scale(0)";
+
+            setTimeout(() => {
+                menuImage.src = `Imagenes/platillo${currentDishIndex + 1}.png`;
+                menuImage.alt = `Platillo ${currentDishIndex + 1}`;
+                dishName.textContent = dishData[currentDishIndex].name;
+                dishDescription.textContent = dishData[currentDishIndex].description;
+                menuImage.style.transform = "scale(1)";
+            }, 500);
+        }
+
+        setInterval(changeDish, 5000);
+        changeDish();
+    </script>
+</body>
+</html>
