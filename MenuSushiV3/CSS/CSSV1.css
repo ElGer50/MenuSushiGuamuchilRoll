@@ -1,0 +1,11 @@
+.image-carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra horizontalmente el sistema de fotos */
+    position: absolute;
+    top: 44%; /* Posición en un 85% desde la parte superior */
+    left: 50%; /* Centra horizontalmente el sistema de fotos */
+    transform: translateX(-50%); /* Centra horizontalmente el sistema de fotos */
+    /* Elimina el fondo semitransparente si aún está presente */
+    background-color: transparent;
+}
